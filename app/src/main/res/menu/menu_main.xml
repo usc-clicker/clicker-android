@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/my_classes" android:title="@string/my_classes" app:showAsAction="always"/>
+
+    <item android:id="@+id/multiple_choice" android:title="Multiple choice" app:showAsAction="never" />
+    <item android:id="@+id/numeric_response" android:title="Numeric response" app:showAsAction="never" />
+    <item android:id="@+id/free_response" android:title="Free response" app:showAsAction="never" />
+</menu>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Clicker</string>
+
+    <string name="status_connected">Clicker is connected!</string>
+    <string name="message_connected">You can turn off your screen.\nDon\'t worry, your device will vibrate when a question is asked.</string>
+
+    <string name="my_classes">MY CLASSES</string>
+    <string name="title_activity_free_response">FreeResponseActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_multiple_choice">MultipleChoiceActivity</string>
+
+    <string name="sample_multiple_choice">In what year was USC founded?</string>
+</resources>
