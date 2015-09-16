@@ -11,5 +11,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_multiple_choice">MultipleChoiceActivity</string>
 
+    <string name="free_response_hint">Answer</string>
     <string name="sample_multiple_choice">In what year was USC founded?</string>
+    <string name="sample_free_response">Who is the current President of USC?</string>
+    <string name="submit">SUBMIT</string>
+    <string name="title_activity_numeric_response">NumericResponseActivity</string>
 </resources>

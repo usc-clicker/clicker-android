@@ -35,23 +35,52 @@
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/sample_multiple_choice"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/sample_free_response"
             android:textColor="?attr/titleTextColor"
             style="@style/Base.TextAppearance.AppCompat.Headline"
             android:gravity="center" />
 
-        <edu.usc.clicker.view.MultipleChoiceList
-            android:id="@+id/multipleChoiceList"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            <EditText
+                android:id="@+id/response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/free_response_hint"
+                android:textColor="?attr/titleTextColor"
+                android:textColorHint="?attr/titleTextColor"
+                android:inputType="numberDecimal"
+                style="@style/TextAppearance.AppCompat.Headline" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end"
+            android:text="@string/submit" />
     </LinearLayout>
+
+    <include layout="@layout/decimal_input_view"
+        android:id="@+id/numpad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"/>
 
 </LinearLayout>

@@ -1,9 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="titleTextColor">@color/titleTextColor</item>
+        <item name="android:actionMenuTextColor">@color/titleTextColor</item>
+        <item name="android:textColorSecondary">#505050</item>
+        <item name="android:textColorPrimaryDisableOnly">#505050</item>
+        <item name="android:actionButtonStyle">@style/Widget.AppCompat.ActionButton</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
     </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_overflow</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

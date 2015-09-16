@@ -2,40 +2,34 @@ package edu.usc.clicker.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import edu.usc.clicker.R;
+import edu.usc.clicker.view.DecimalInputView;
 
-public class FreeResponseActivity extends AppCompatActivity {
+public class NumericResponseActivity extends AppCompatActivity {
 
-    EditText answer;
+    EditText response;
+    DecimalInputView numpad;
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, FreeResponseActivity.class);
+        Intent intent = new Intent(context, NumericResponseActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_free_response);
+        setContentView(R.layout.activity_numeric_response);
 
-        answer = (EditText) findViewById(R.id.response);
-        answer.requestFocus();
+        response = (EditText) findViewById(R.id.response);
+        numpad = (DecimalInputView) findViewById(R.id.numpad);
 
-        answer.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(answer, 0);
-            }
-        }, 300);
-
+        numpad.setEditText(response);
     }
 
     @Override
@@ -59,4 +53,5 @@ public class FreeResponseActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

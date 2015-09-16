@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.multiple_choice) {
             MultipleChoiceActivity.start(this);
+        } else if (id == R.id.free_response) {
+            FreeResponseActivity.start(this);
+        } else if (id == R.id.numeric_response) {
+            NumericResponseActivity.start(this);
         }
 
         return super.onOptionsItemSelected(item);

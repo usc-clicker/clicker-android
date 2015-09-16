@@ -1,12 +1,79 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="edu.usc.clicker.activity.FreeResponseActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="edu.usc.clicker.activity.MultipleChoiceActivity"
+    android:background="@color/colorPrimary" >
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height">
 
-</RelativeLayout>
+        <TextView android:id="@+id/title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_margin="16dp"
+            android:text="@string/app_name"
+            android:textColor="?attr/titleTextColor"
+            style="@style/Base.TextAppearance.AppCompat.Title" />
+
+        <edu.usc.clicker.view.TimerView android:id="@+id/timeRemaining"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:background="@drawable/time_remaining_background"
+            style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/sample_free_response"
+            android:textColor="?attr/titleTextColor"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:gravity="center" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            <EditText
+                android:id="@+id/response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/free_response_hint"
+                android:textColor="?attr/titleTextColor"
+                android:textColorHint="?attr/titleTextColor"
+                style="@style/TextAppearance.AppCompat.Headline" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end"
+            android:text="@string/submit" />
+    </LinearLayout>
+
+</LinearLayout>
