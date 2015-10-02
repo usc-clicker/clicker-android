@@ -3,19 +3,14 @@ package edu.usc.clicker.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MultipleChoiceQuestion implements Parcelable {
+public class NumericResponseQuestion implements Parcelable {
 
     @SerializedName("answer")
     @Expose
-    private String answer;
-    @SerializedName("choices")
-    @Expose
-    private List<String> choices = new ArrayList<String>();
+    private long answer;
     @SerializedName("push_hash")
     @Expose
     private String pushHash;
@@ -32,12 +27,8 @@ public class MultipleChoiceQuestion implements Parcelable {
     @Expose
     private String type;
 
-    public String getAnswer() {
+    public long getAnswer() {
         return answer;
-    }
-
-    public List<String> getChoices() {
-        return choices;
     }
 
     public String getPushHash() {
@@ -60,6 +51,7 @@ public class MultipleChoiceQuestion implements Parcelable {
         return type;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -67,8 +59,7 @@ public class MultipleChoiceQuestion implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.answer);
-        dest.writeStringList(this.choices);
+        dest.writeLong(this.answer);
         dest.writeString(this.pushHash);
         dest.writeString(this.question);
         dest.writeLong(this.startTime);
@@ -76,12 +67,11 @@ public class MultipleChoiceQuestion implements Parcelable {
         dest.writeString(this.type);
     }
 
-    public MultipleChoiceQuestion() {
+    public NumericResponseQuestion() {
     }
 
-    protected MultipleChoiceQuestion(Parcel in) {
-        this.answer = in.readString();
-        this.choices = in.createStringArrayList();
+    protected NumericResponseQuestion(Parcel in) {
+        this.answer = in.readLong();
         this.pushHash = in.readString();
         this.question = in.readString();
         this.startTime = in.readLong();
@@ -89,13 +79,13 @@ public class MultipleChoiceQuestion implements Parcelable {
         this.type = in.readString();
     }
 
-    public static final Parcelable.Creator<MultipleChoiceQuestion> CREATOR = new Parcelable.Creator<MultipleChoiceQuestion>() {
-        public MultipleChoiceQuestion createFromParcel(Parcel source) {
-            return new MultipleChoiceQuestion(source);
+    public static final Parcelable.Creator<NumericResponseQuestion> CREATOR = new Parcelable.Creator<NumericResponseQuestion>() {
+        public NumericResponseQuestion createFromParcel(Parcel source) {
+            return new NumericResponseQuestion(source);
         }
 
-        public MultipleChoiceQuestion[] newArray(int size) {
-            return new MultipleChoiceQuestion[size];
+        public NumericResponseQuestion[] newArray(int size) {
+            return new NumericResponseQuestion[size];
         }
     };
 }

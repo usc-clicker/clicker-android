@@ -45,38 +45,39 @@ public class DecimalInputView extends LinearLayout implements View.OnClickListen
         findViewById(R.id.nine).setOnClickListener(this);
         findViewById(R.id.zero).setOnClickListener(this);
         findViewById(R.id.dot).setOnClickListener(this);
-        findViewById(R.id.backspace).setOnTouchListener(new OnTouchListener() {
-            private Handler handler;
-            private boolean isHolding;
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        isHolding = true;
-                        if (handler != null) return true;
-                        handler = new Handler();
-                        handler.post(backspaceAction);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        isHolding = false;
-                        if (handler == null) return true;
-                        handler.removeCallbacks(backspaceAction);
-                        handler = null;
-                        break;
-                }
-                return false;
-            }
-
-            Runnable backspaceAction = new Runnable() {
-                @Override
-                public void run() {
-                    backspace();
-                    if (isHolding) {
-                        handler.postDelayed(this, 200);
-                    }
-                }
-            };
-        });
+        findViewById(R.id.backspace).setOnClickListener(this);
+//        findViewById(R.id.backspace).setOnTouchListener(new OnTouchListener() {
+//            private Handler handler;
+//            private boolean isHolding;
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch(event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        isHolding = true;
+//                        if (handler != null) return true;
+//                        handler = new Handler();
+//                        handler.post(backspaceAction);
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        isHolding = false;
+//                        if (handler == null) return true;
+//                        handler.removeCallbacks(backspaceAction);
+//                        handler = null;
+//                        break;
+//                }
+//                return false;
+//            }
+//
+//            Runnable backspaceAction = new Runnable() {
+//                @Override
+//                public void run() {
+//                    backspace();
+//                    if (isHolding) {
+//                        handler.postDelayed(this, 200);
+//                    }
+//                }
+//            };
+//        });
     }
 
     @Override
@@ -84,6 +85,8 @@ public class DecimalInputView extends LinearLayout implements View.OnClickListen
         if (v instanceof TextView) {
             TextView textView = (TextView) v;
             insert(textView.getText());
+        } else {
+            backspace();
         }
         vibrator.vibrate(25);
     }

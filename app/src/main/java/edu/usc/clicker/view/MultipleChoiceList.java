@@ -20,4 +20,8 @@ public class MultipleChoiceList extends RecyclerView {
     public void setQuestion(MultipleChoiceQuestion question) {
         ((MultipleChoiceListAdapter) getAdapter()).setQuestion(question);
     }
+
+    public int getSelectedItem() {
+        return ((MultipleChoiceListAdapter) getAdapter()).getSelectedItem();
+    }
 }

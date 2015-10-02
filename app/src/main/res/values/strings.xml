@@ -16,4 +16,7 @@
     <string name="sample_free_response">Who is the current President of USC?</string>
     <string name="submit">SUBMIT</string>
     <string name="title_activity_numeric_response">NumericResponseActivity</string>
+    <string name="sample_numeric_response">In what year was USC founded?</string>
+
+    <string name="current_class">Current Class:</string>
 </resources>

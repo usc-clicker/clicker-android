@@ -29,17 +29,21 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
 
     @Override
     public void onBindViewHolder(MultipleChoiceItemHolder multipleChoiceItemHolder, int i) {
-        multipleChoiceItemHolder.bindAnswer(question.getAnswers().get(i), i);
+        multipleChoiceItemHolder.bindAnswer(question.getChoices().get(i), i);
         multipleChoiceItemHolder.setSelected(selected == i);
     }
 
     @Override
     public int getItemCount() {
-        return question == null ? 0 : question.getAnswers().size();
+        return question == null ? 0 : question.getChoices().size();
     }
 
     public void setSelected(int selected) {
         this.selected = selected;
         notifyDataSetChanged();
+    }
+
+    public int getSelectedItem() {
+        return selected;
     }
 }

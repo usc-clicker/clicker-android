@@ -8,6 +8,9 @@
     <color name="actionMenuTextColor">#212121</color>
     <color name="accent">#FFCC00</color>
 
+    <color name="currentClassTitle">#212121</color>
+    <color name="currentClassSubtitle">#505050</color>
+
     <color name="status_text">#FFFFFF</color>
     <color name="message_text">#FFFFFF</color>
 </resources>

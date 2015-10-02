@@ -35,7 +35,7 @@
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/sample_free_response"
+            android:text="@string/sample_numeric_response"
             android:textColor="?attr/titleTextColor"
             style="@style/Base.TextAppearance.AppCompat.Headline"
             android:gravity="center" />
@@ -75,12 +75,13 @@
             android:layout_marginEnd="16dp"
             android:layout_gravity="end"
             android:text="@string/submit" />
-    </LinearLayout>
 
-    <include layout="@layout/decimal_input_view"
-        android:id="@+id/numpad"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"/>
+        <include layout="@layout/decimal_input_view"
+            android:id="@+id/numpad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
