@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Clicker</string>
 
+    <string name="app_running">Clicker is connected!</string>
+    <string name="disconnect">Disconnect</string>
+
+    <string name="email">USC email</string>
+    <string name="password">Password</string>
+
+    <string name="login_title">Login with your USC account</string>
+    <string name="login_description">Clicker needs to connect using your USC credentials to get your courses and quizzes.</string>
+    <string name="bad_login">Invalid username or password.</string>
+    <string name="login_error">An error occurred while logging in. Please try again.</string>
+
     <string name="status_connected">Clicker is connected!</string>
     <string name="message_connected">You can turn off your screen.\nDon\'t worry, your device will vibrate when a question is asked.</string>
 

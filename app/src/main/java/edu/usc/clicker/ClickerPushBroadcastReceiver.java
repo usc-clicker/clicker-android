@@ -3,6 +3,7 @@ package edu.usc.clicker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.parse.ParseAnalytics;
@@ -19,6 +20,19 @@ import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.model.NumericResponseQuestion;
 
 public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+
+        if (intent.getAction().equals(ClickerApplication.DISCONNECT_ACTION)) {
+            ClickerApplication.disconnect();
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            notificationManager.cancel(ClickerApplication.DISCONNECT_ID);
+            Log.d("CPBR", "Clicker disconnected! Exiting...");
+            System.exit(0);
+        }
+    }
+
     @Override
     protected void onPushReceive(Context context, Intent intent) {
         super.onPushReceive(context, intent);

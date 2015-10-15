@@ -11,6 +11,9 @@
         <item name="android:textColorPrimaryDisableOnly">#505050</item>
         <item name="android:actionButtonStyle">@style/Widget.AppCompat.ActionButton</item>
         <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+        <item name="android:textColorHint">@color/textColorPrimary</item>
+        <item name="colorControlNormal">@color/textColorPrimary</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 
     <style name="OverflowButtonStyle" parent="Widget.AppCompat.Light.ActionButton.Overflow">

@@ -8,6 +8,8 @@
     <color name="actionMenuTextColor">#212121</color>
     <color name="accent">#FFCC00</color>
 
+    <color name="cardBackground">#FFFFFF</color>
+
     <color name="currentClassTitle">#212121</color>
     <color name="currentClassSubtitle">#505050</color>
 

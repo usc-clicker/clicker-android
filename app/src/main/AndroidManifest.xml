@@ -29,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoginActivity"
+            android:label="Clicker"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
         <activity
             android:name=".activity.FreeResponseActivity"
             android:label="@string/title_activity_free_response"
@@ -44,9 +49,11 @@
         </activity>
 
         <service android:name="com.parse.PushService" />
+
         <receiver android:name="edu.usc.clicker.ClickerPushBroadcastReceiver"
             android:exported="false">
             <intent-filter>
+                <action android:name="edu.usc.clicker.ClickerApplication.DISCONNECT_ACTION" />
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
@@ -58,9 +65,6 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!--
-                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
                 <category android:name="edu.usc.clicker" />
             </intent-filter>
         </receiver>
