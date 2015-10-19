@@ -164,12 +164,13 @@
             android:id="@+id/backspace"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="28dp"
             android:gravity="center"
             android:layout_weight="1"
+            android:scaleType="center"
             android:src="@drawable/ic_backspace_96dp"
             android:background="@drawable/timer_view_selector"
-            style="@style/Base.TextAppearance.AppCompat.Display1" />
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
