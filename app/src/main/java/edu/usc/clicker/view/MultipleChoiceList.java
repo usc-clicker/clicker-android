@@ -14,7 +14,7 @@ public class MultipleChoiceList extends RecyclerView {
     public MultipleChoiceList(Context context, AttributeSet attrs) {
         super(context, attrs);
         setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
-        setAdapter(new MultipleChoiceListAdapter());
+        setAdapter(new MultipleChoiceListAdapter(context));
     }
 
     public void setQuestion(MultipleChoiceQuestion question) {

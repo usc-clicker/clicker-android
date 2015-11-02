@@ -26,7 +26,7 @@ import edu.usc.clicker.model.FreeResponseQuestion;
 import edu.usc.clicker.util.Timer;
 import edu.usc.clicker.view.TimerView;
 
-public class FreeResponseActivity extends AppCompatActivity implements Timer.TimerListener, View.OnClickListener {
+public class FreeResponseActivity extends ResponseActivity implements Timer.TimerListener, View.OnClickListener {
 
     EditText answer;
     TimerView timeRemaining;

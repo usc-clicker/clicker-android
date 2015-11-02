@@ -13,7 +13,16 @@
         <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
         <item name="android:textColorHint">@color/textColorPrimary</item>
         <item name="colorControlNormal">@color/textColorPrimary</item>
+        <item name="android:colorButtonNormal">@color/textColorPrimary</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="MyClassesTheme" parent="@style/AppTheme">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="StatisticsTheme" parent="@style/AppTheme">
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="OverflowButtonStyle" parent="Widget.AppCompat.Light.ActionButton.Overflow">

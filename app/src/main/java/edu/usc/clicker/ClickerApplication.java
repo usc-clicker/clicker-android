@@ -8,16 +8,21 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
+import com.squareup.okhttp.OkHttpClient;
+//import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.Arrays;
 
 import edu.usc.clicker.activity.MainActivity;
-import edu.usc.clicker.api.LoginAPI;
+import edu.usc.clicker.api.ClickerAPI;
+import edu.usc.clicker.model.AnswerResponse;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
@@ -29,14 +34,35 @@ public class ClickerApplication extends Application {
     public static final String DISCONNECT_ACTION = "edu.usc.clicker.ClickerApplication.DISCONNECT_ACTION";
     public static Intent disconnectIntent;
 
+    public static OkHttpClient OK_CLIENT = createOkHttpClient();
+
     public static Retrofit RETROFIT = new Retrofit.Builder()
-            .baseUrl("http://clicker.dcarr.io")
+            .client(OK_CLIENT)
+            .baseUrl("http://fontify.usc.edu")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    public static LoginAPI LOGIN_API = RETROFIT.create(LoginAPI.class);
+    public static ClickerAPI CLICKER_API = RETROFIT.create(ClickerAPI.class);
 
     public static final LoginHelper LOGIN_HELPER = new LoginHelper();
+
+    public static LoginHelper getLoginHelper() {
+        return LOGIN_HELPER;
+    }
+
+    private static OkHttpClient createOkHttpClient() {
+        OkHttpClient client = new OkHttpClient();
+        //HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+//            @Override
+//            public void log(String s) {
+//                Log.d("ClickerApplication", s);
+//            }
+//        });
+        //interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        //client.interceptors().add(interceptor);
+
+        return client;
+    }
 
     @Override
     public void onCreate() {

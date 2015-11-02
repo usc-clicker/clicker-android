@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edu.usc.clicker.view.MyClassesItem xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="CSCI 350: Introduction to Operating Systems"
+        android:id="@+id/name"
+        android:textColor="@color/my_classes_primary"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="Crowley"
+            android:id="@+id/lecturer"
+            android:layout_weight="1"
+            android:textColor="@color/my_classes_secondary"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="30061"
+            android:id="@+id/id"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textColor="@color/my_classes_secondary"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+</edu.usc.clicker.view.MyClassesItem>

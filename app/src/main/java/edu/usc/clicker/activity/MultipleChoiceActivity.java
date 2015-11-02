@@ -26,7 +26,7 @@ import edu.usc.clicker.R;
 import edu.usc.clicker.util.Timer;
 import edu.usc.clicker.view.TimerView;
 
-public class MultipleChoiceActivity extends AppCompatActivity implements Timer.TimerListener {
+public class MultipleChoiceActivity extends ResponseActivity implements Timer.TimerListener {
 
     private LinearLayout root;
     private LinearLayout content;

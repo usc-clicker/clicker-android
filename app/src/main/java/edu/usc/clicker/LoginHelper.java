@@ -38,4 +38,10 @@ public class LoginHelper {
 
         editor.apply();
     }
+
+    public static String getEmail(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
+
+        return sharedPreferences.getString(EMAIL, "");
+    }
 }

@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -29,7 +29,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.WelcomeActivity"
+            android:label="Clicker"
+            android:theme="@style/AppTheme" >
+        </activity>
         <activity android:name=".activity.LoginActivity"
+            android:label="Clicker"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity android:name=".activity.CreateAccountActivity"
             android:label="Clicker"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" >
@@ -46,6 +55,16 @@
         <activity
             android:name=".activity.NumericResponseActivity"
             android:label="@string/title_activity_numeric_response" >
+        </activity>
+        <activity
+            android:name=".activity.MyClassesActivity"
+            android:label="@string/my_classes_title"
+            android:theme="@style/MyClassesTheme" >
+        </activity>
+        <activity
+            android:name=".activity.StatisticsActivity"
+            android:label="@string/statistics_title"
+            android:theme="@style/StatisticsTheme">
         </activity>
 
         <service android:name="com.parse.PushService" />

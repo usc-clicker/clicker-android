@@ -8,6 +8,8 @@
     <color name="actionMenuTextColor">#212121</color>
     <color name="accent">#FFCC00</color>
 
+    <color name="white">#FFFFFF</color>
+
     <color name="cardBackground">#FFFFFF</color>
 
     <color name="currentClassTitle">#212121</color>
@@ -15,4 +17,7 @@
 
     <color name="status_text">#FFFFFF</color>
     <color name="message_text">#FFFFFF</color>
+
+    <color name="my_classes_primary">#212121</color>
+    <color name="my_classes_secondary">#505050</color>
 </resources>

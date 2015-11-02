@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (!ClickerApplication.LOGIN_HELPER.isLoggedIn(this)) {
-            LoginActivity.start(this);
+            WelcomeActivity.start(this);
             finish();
         }
 
@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
             ClickerApplication.LOGIN_HELPER.logout(this);
             LoginActivity.start(this);
             finish();
+        } else if (item.getItemId() == R.id.statistics) {
+            StatisticsActivity.start(this);
         }
 
         return super.onOptionsItemSelected(item);

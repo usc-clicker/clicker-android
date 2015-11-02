@@ -54,7 +54,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Cal
             Log.d("LoginActivity", "Logging in...");
             showLoadingLayout();
             loginBody = new LoginBody(email.getText().toString(), password.getText().toString());
-            ClickerApplication.LOGIN_API.login(loginBody).enqueue(this);
+            ClickerApplication.CLICKER_API.login(loginBody).enqueue(this);
         }
     }
 

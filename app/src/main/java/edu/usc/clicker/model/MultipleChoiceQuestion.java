@@ -10,6 +10,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class MultipleChoiceQuestion implements Parcelable {
 
+    @SerializedName("id")
+    @Expose
+    private int id;
     @SerializedName("answer")
     @Expose
     private String answer;
@@ -31,6 +34,14 @@ public class MultipleChoiceQuestion implements Parcelable {
     @SerializedName("type")
     @Expose
     private String type;
+
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
 
     public String getAnswer() {
         return answer;
@@ -67,6 +78,7 @@ public class MultipleChoiceQuestion implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
         dest.writeString(this.answer);
         dest.writeStringList(this.choices);
         dest.writeString(this.pushHash);
@@ -80,6 +92,7 @@ public class MultipleChoiceQuestion implements Parcelable {
     }
 
     protected MultipleChoiceQuestion(Parcel in) {
+        this.id = in.readInt();
         this.answer = in.readString();
         this.choices = in.createStringArrayList();
         this.pushHash = in.readString();

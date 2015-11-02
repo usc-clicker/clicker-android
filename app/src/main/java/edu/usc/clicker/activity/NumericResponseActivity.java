@@ -27,7 +27,7 @@ import edu.usc.clicker.util.Timer.TimerListener;
 import edu.usc.clicker.view.DecimalInputView;
 import edu.usc.clicker.view.TimerView;
 
-public class NumericResponseActivity extends AppCompatActivity implements TimerListener, View.OnClickListener {
+public class NumericResponseActivity extends FreeResponseActivity implements TimerListener, View.OnClickListener {
 
     EditText response;
     DecimalInputView numpad;

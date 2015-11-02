@@ -1,0 +1,39 @@
+package edu.usc.clicker.api;
+
+import com.squareup.okhttp.ResponseBody;
+
+import java.util.List;
+
+import edu.usc.clicker.model.AnswerResponse;
+import edu.usc.clicker.model.Course;
+import edu.usc.clicker.model.LoginBody;
+import edu.usc.clicker.model.QuizStatistics;
+import edu.usc.clicker.model.Section;
+import retrofit.Call;
+import retrofit.http.Body;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Query;
+
+public interface ClickerAPI {
+    @POST("/auth/login/")
+    Call<ResponseBody> login(@Body LoginBody loginBody);
+
+    @GET("/class/")
+    Call<Course> getCourse(@Query("id") int courseID);
+
+    @GET("/class/")
+    Call<List<Course>> getCourses();
+
+    @GET("/section/")
+    Call<Section> getSection(@Query("id") int sectionID);
+
+    @GET("/section/")
+    Call<List<Section>> getSections();
+
+    @POST("/question/answer/")
+    Call<ResponseBody> answer(@Body AnswerResponse answer);
+
+    @GET("/user/stats/")
+    Call<List<QuizStatistics>> getStats(@Query("user") String username);
+}

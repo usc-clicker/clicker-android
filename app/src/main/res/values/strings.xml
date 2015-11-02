@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Clicker</string>
+    <string name="my_classes_title">My Classes</string>
+    <string name="statistics_title">Statistics</string>
 
     <string name="app_running">Clicker is connected!</string>
     <string name="disconnect">Disconnect</string>
@@ -7,15 +9,26 @@
     <string name="email">USC email</string>
     <string name="password">Password</string>
 
+    <string name="welcome_title">Welcome to Clicker</string>
+    <string name="welcome_description">To use Clicker, you need a Clicker account. You can either create an account or login with an existing one.</string>
+    <string name="welcome_new_account">CREATE AN ACCOUNT</string>
+    <string name="welcome_login">LOGIN</string>
     <string name="login_title">Login with your USC account</string>
     <string name="login_description">Clicker needs to connect using your USC credentials to get your courses and quizzes.</string>
     <string name="bad_login">Invalid username or password.</string>
     <string name="login_error">An error occurred while logging in. Please try again.</string>
 
+    <string name="permissions_request_title">Clicker needs access to your location</string>
+    <string name="permissions_request_message">In order to verify that you\'re attending this class, Clicker needs access to your location. Once you dismiss this dialog, Clicker will ask for the necessary permissions. Make sure to allow access to ensure that your answers are properly recorded.</string>
+    <string name="permissions_request_ok">OK</string>
+
+    <string name="status_no_location">Getting location…</string>
+    <string name="message_no_location">Clicker is getting your location to verify presence in class.</string>
     <string name="status_connected">Clicker is connected!</string>
     <string name="message_connected">You can turn off your screen.\nDon\'t worry, your device will vibrate when a question is asked.</string>
 
     <string name="my_classes">MY CLASSES</string>
+    <string name="statistics">STATISTICS</string>
     <string name="title_activity_free_response">FreeResponseActivity</string>
 
     <string name="hello_world">Hello world!</string>
@@ -30,4 +43,14 @@
     <string name="sample_numeric_response">In what year was USC founded?</string>
 
     <string name="current_class">Current Class:</string>
+    <string name="create_account_title">Create an account</string>
+    <string name="create_account_description">To create an account, enter your USC email, student ID, and a password below.</string>
+    <string name="id_hint">USC student ID</string>
+    <string name="confirmPassword">Confirm password</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="showPassword">Show password</string>
+    <string name="email_invalid">Please enter a valid USC email address.</string>
+    <string name="student_id_invalid">Please enter a valid student ID.</string>
+    <string name="password_invalid">Please enter a valid password at least 8 characters in length.</string>
+    <string name="passwords_dont_match">Passwords don\'t match.</string>
 </resources>
