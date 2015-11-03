@@ -3,7 +3,7 @@ package edu.usc.clicker.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginBody {
+public class RegisterBody {
     @SerializedName("email")
     @Expose
     private String email;
@@ -12,8 +12,13 @@ public class LoginBody {
     @Expose
     private String password;
 
-    public LoginBody(String email, String password) {
+    @SerializedName("student_id")
+    @Expose
+    private long studentID;
+
+    public RegisterBody(String email, String password, long studentID) {
         this.email = email;
         this.password = password;
+        this.studentID = studentID;
     }
 }

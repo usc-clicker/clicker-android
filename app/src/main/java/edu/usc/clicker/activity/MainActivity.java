@@ -3,6 +3,7 @@ package edu.usc.clicker.activity;
 import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,37 +53,37 @@ public class MainActivity extends AppCompatActivity {
         content = (LinearLayout) findViewById(R.id.content);
         currentClassCard = (CardView) findViewById(R.id.currentClassCard);
 
-        //content.setAlpha(0.0f);
-        //content.setTranslationY(getResources().getDisplayMetrics().heightPixels);
-        //currentClassCard.setTranslationY(getResources().getDisplayMetrics().heightPixels);
+        content.setAlpha(0.0f);
+        content.setTranslationY(getResources().getDisplayMetrics().heightPixels);
+        currentClassCard.setTranslationY(getResources().getDisplayMetrics().heightPixels);
 
-        //content.animate()
-//                .alpha(1.0f)
-//                .translationY(0.0f)
-//                .setInterpolator(new DecelerateInterpolator())
-//                .setDuration(1000)
-//                .setListener(new Animator.AnimatorListener() {
-//                    @Override
-//                    public void onAnimationStart(Animator animation) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onAnimationEnd(Animator animation) {
-//                        currentClassCard.animate().translationY(0.0f).setInterpolator(new DecelerateInterpolator()).setDuration(300).start();
-//                    }
-//
-//                    @Override
-//                    public void onAnimationCancel(Animator animation) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onAnimationRepeat(Animator animation) {
-//
-//                    }
-//                });
-        //currentClassCard.animate().alpha(1.0f).translationY(0.0f).setInterpolator(new DecelerateInterpolator()).setDuration(1000).start();
+        content.animate()
+                .alpha(1.0f)
+                .translationY(0.0f)
+                .setInterpolator(new DecelerateInterpolator())
+                .setDuration(1000)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        currentClassCard.animate().translationY(0.0f).setInterpolator(new DecelerateInterpolator()).setDuration(300).start();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+        currentClassCard.animate().alpha(1.0f).translationY(0.0f).setInterpolator(new DecelerateInterpolator()).setDuration(1000).start();
     }
 
     @Override
@@ -100,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.logout) {
             ClickerApplication.LOGIN_HELPER.logout(this);
-            LoginActivity.start(this);
+            WelcomeActivity.start(this);
             finish();
-        } else if (item.getItemId() == R.id.statistics) {
-            StatisticsActivity.start(this);
+        } else if (item.getItemId() == R.id.my_classes) {
+            MyClassesActivity.start(this);
         }
 
         return super.onOptionsItemSelected(item);

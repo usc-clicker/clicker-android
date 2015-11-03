@@ -1,4 +1,4 @@
-package edu.usc.clicker;
+package edu.usc.clicker.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

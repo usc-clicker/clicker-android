@@ -1,5 +1,6 @@
 package edu.usc.clicker.activity;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,19 +10,33 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.InputType;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
+import com.squareup.okhttp.ResponseBody;
+
+import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
+import edu.usc.clicker.model.LoginBody;
+import edu.usc.clicker.model.RegisterBody;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity implements Callback<ResponseBody> {
 
-    EditText email;
-    EditText studentID;
-    EditText password;
-    EditText confirmPassword;
-    AppCompatButton createAccount;
-    AppCompatCheckBox showPassword;
+    private EditText email;
+    private EditText studentID;
+    private EditText password;
+    private EditText confirmPassword;
+    private AppCompatButton createAccount;
+    private AppCompatCheckBox showPassword;
+    private FrameLayout loadingLayout;
+
+    private boolean accountCreated = false;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, CreateAccountActivity.class);
@@ -40,6 +55,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);
         createAccount = (AppCompatButton) findViewById(R.id.createAccount);
         showPassword = (AppCompatCheckBox) findViewById(R.id.showPassword);
+        loadingLayout = (FrameLayout) findViewById(R.id.loadingLayout);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +91,87 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void createAccount() {
-        //do account creation here
+        showLoadingLayout();
+        ClickerApplication.CLICKER_API.register(new RegisterBody(email.getText().toString(), password.getText().toString(), Long.parseLong(studentID.getText().toString()))).enqueue(this);
+    }
 
+    @Override
+    public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
+        if (response.code() == 200) {
+            if (accountCreated) {
+                ClickerApplication.getLoginHelper().login(email.getText().toString(), password.getText().toString(), this);
+                MainActivity.start(this);
+                finish();
+            } else {
+                accountCreated = true;
+                ClickerApplication.CLICKER_API.login(new LoginBody(email.getText().toString(), password.getText().toString())).enqueue(this);
+            }
+        } else {
+            hideLoadingLayout();
+            Snackbar.make(findViewById(android.R.id.content), R.string.accountCreationFailed, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
+    }
+
+    private void showLoadingLayout() {
+        loadingLayout.animate()
+                .alpha(1.0f)
+                .setInterpolator(new DecelerateInterpolator())
+                .setDuration(300)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        loadingLayout.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .start();
+    }
+
+    private void hideLoadingLayout() {
+        loadingLayout.animate()
+                .alpha(0.0f)
+                .setInterpolator(new AccelerateInterpolator())
+                .setDuration(300)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        loadingLayout.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .start();
     }
 }

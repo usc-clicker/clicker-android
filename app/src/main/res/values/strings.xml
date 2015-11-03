@@ -53,4 +53,12 @@
     <string name="student_id_invalid">Please enter a valid student ID.</string>
     <string name="password_invalid">Please enter a valid password at least 8 characters in length.</string>
     <string name="passwords_dont_match">Passwords don\'t match.</string>
+    <string name="addClassDialogTitle">Add a class</string>
+    <string name="addClassCancel">Cancel</string>
+    <string name="addClassDialogMessage">To add a class, enter its section ID below.</string>
+    <string name="addClassDialogPositive">Add</string>
+    <string name="addClassDialogNegative">Cancel</string>
+    <string name="addClassFailure">The class you added does not exist.</string>
+    <string name="addClassNetworkFailure">Failed to add class, please try again.</string>
+    <string name="accountCreationFailed">Failed to create an account due to an unknown error.</string>
 </resources>

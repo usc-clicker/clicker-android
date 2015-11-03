@@ -8,21 +8,18 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.squareup.okhttp.OkHttpClient;
-//import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.Arrays;
 
 import edu.usc.clicker.activity.MainActivity;
 import edu.usc.clicker.api.ClickerAPI;
-import edu.usc.clicker.model.AnswerResponse;
+import edu.usc.clicker.util.LoginHelper;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
