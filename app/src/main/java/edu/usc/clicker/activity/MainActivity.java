@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else if (item.getItemId() == R.id.my_classes) {
             MyClassesActivity.start(this);
+        } else if (item.getItemId() == R.id.foss) {
+            FOSSActivity.start(this);
         }
 
         return super.onOptionsItemSelected(item);

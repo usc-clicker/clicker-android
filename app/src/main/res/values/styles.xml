@@ -25,6 +25,10 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="FOSSTheme" parent="@style/AppTheme">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
     <style name="OverflowButtonStyle" parent="Widget.AppCompat.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_action_overflow</item>
     </style>

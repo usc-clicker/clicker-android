@@ -2,5 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/my_classes" android:title="@string/my_classes" app:showAsAction="always"/>
-    <item android:id="@+id/logout" android:title="Logout" app:showAsAction="never" />
+    <item android:id="@+id/logout" android:title="@string/logout_menu_item" app:showAsAction="never" />
+    <item android:id="@+id/foss" android:title="@string/foss_menu_item" app:showAsAction="never" />
 </menu>

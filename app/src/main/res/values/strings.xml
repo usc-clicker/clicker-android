@@ -61,4 +61,8 @@
     <string name="addClassFailure">The class you added does not exist.</string>
     <string name="addClassNetworkFailure">Failed to add class, please try again.</string>
     <string name="accountCreationFailed">Failed to create an account due to an unknown error.</string>
+    <string name="foss_title">Open Source Licenses</string>
+
+    <string name="foss_menu_item">Open Source Licenses</string>
+    <string name="logout_menu_item">Logout</string>
 </resources>

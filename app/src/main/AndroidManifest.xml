@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.usc.clicker" >
+    package="edu.usc.clicker">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,66 +10,68 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <permission android:protectionLevel="signature"
-        android:name="edu.usc.clicker.permission.C2D_MESSAGE" />
+    <permission
+        android:name="edu.usc.clicker.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <uses-permission android:name="edu.usc.clicker.permission.C2D_MESSAGE" />
 
     <application
+        android:name=".ClickerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name="edu.usc.clicker.ClickerApplication">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WelcomeActivity"
+        <activity
+            android:name=".activity.WelcomeActivity"
             android:label="Clicker"
-            android:theme="@style/AppTheme" >
-        </activity>
-        <activity android:name=".activity.LoginActivity"
-            android:label="Clicker"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
-        <activity android:name=".activity.CreateAccountActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:label="Clicker"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.CreateAccountActivity"
+            android:label="Clicker"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.FreeResponseActivity"
             android:label="@string/title_activity_free_response"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.MultipleChoiceActivity"
-            android:label="@string/title_activity_multiple_choice" >
-        </activity>
+            android:label="@string/title_activity_multiple_choice" />
         <activity
             android:name=".activity.NumericResponseActivity"
-            android:label="@string/title_activity_numeric_response" >
-        </activity>
+            android:label="@string/title_activity_numeric_response" />
         <activity
             android:name=".activity.MyClassesActivity"
             android:label="@string/my_classes_title"
-            android:theme="@style/MyClassesTheme" >
-        </activity>
+            android:theme="@style/MyClassesTheme" />
         <activity
             android:name=".activity.StatisticsActivity"
             android:label="@string/statistics_title"
-            android:theme="@style/StatisticsTheme">
-        </activity>
+            android:theme="@style/StatisticsTheme" />
+        <activity
+            android:name=".activity.FOSSActivity"
+            android:label="@string/foss_title"
+            android:theme="@style/FOSSTheme" />
 
         <service android:name="com.parse.PushService" />
 
-        <receiver android:name="edu.usc.clicker.ClickerPushBroadcastReceiver"
+        <receiver
+            android:name=".ClickerPushBroadcastReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="edu.usc.clicker.ClickerApplication.DISCONNECT_ACTION" />
@@ -78,7 +80,8 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -87,6 +90,7 @@
                 <category android:name="edu.usc.clicker" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>
