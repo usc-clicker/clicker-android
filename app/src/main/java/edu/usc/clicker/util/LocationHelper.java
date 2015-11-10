@@ -18,7 +18,9 @@ public class LocationHelper implements LocationListener {
         if (isBetterLocation(location, bestLocation)) {
             if (bestLocation == null) {
                 bestLocation = location;
-                listener.locationStatusChanged(true);
+                if (listener != null) {
+                    listener.locationStatusChanged(true);
+                }
             } else {
                 bestLocation = location;
             }
@@ -38,6 +40,14 @@ public class LocationHelper implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    public Location getBestLocation() {
+        return bestLocation;
+    }
+
+    public boolean hasLocation() {
+        return hasLocation;
     }
 
     public void setLocationHelperListener(LocationHelperListener listener) {

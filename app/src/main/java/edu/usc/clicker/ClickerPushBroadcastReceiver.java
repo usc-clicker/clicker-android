@@ -28,8 +28,6 @@ public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
             ClickerApplication.disconnect();
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
             notificationManager.cancel(ClickerApplication.DISCONNECT_ID);
-            Log.d("CPBR", "Clicker disconnected! Exiting...");
-            System.exit(0);
         }
     }
 
@@ -43,15 +41,17 @@ public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
 
             String type = json.getString("type");
 
-            if (type.equals("multiple-choice")) {
-                MultipleChoiceQuestion question = ClickerApplication.GSON.fromJson(json.toString(), MultipleChoiceQuestion.class);
-                MultipleChoiceActivity.start(context, question);
-            } else if (type.equals("free-response")) {
-                FreeResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), FreeResponseQuestion.class);
-                FreeResponseActivity.start(context, question);
-            } else if (type.equals("numeric")) {
-                NumericResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), NumericResponseQuestion.class);
-                NumericResponseActivity.start(context, question);
+            if (ClickerApplication.getShouldAutoLaunch()) {
+                if (type.equals("multiple-choice")) {
+                    MultipleChoiceQuestion question = ClickerApplication.GSON.fromJson(json.toString(), MultipleChoiceQuestion.class);
+                    MultipleChoiceActivity.start(context, question);
+                } else if (type.equals("free-response")) {
+                    FreeResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), FreeResponseQuestion.class);
+                    FreeResponseActivity.start(context, question);
+                } else if (type.equals("numeric")) {
+                    NumericResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), NumericResponseQuestion.class);
+                    NumericResponseActivity.start(context, question);
+                }
             }
         } catch (JSONException je) {
             je.printStackTrace();

@@ -75,8 +75,8 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
         answerResponse.setAnswer(question.getChoices().get(selected));
         answerResponse.setQuestionId(question.getID());
         answerResponse.setUser(ClickerApplication.LOGIN_HELPER.getEmail(context));
-        if (((ResponseActivity) context).hasLastLocation()) {
-            answerResponse.setLocationResponse(((ResponseActivity) context).getLastLocation());
+        if (ClickerApplication.getLocationHelper() != null && ClickerApplication.getLocationHelper().hasLocation()) {
+            answerResponse.setLocationResponse(ClickerApplication.getLocationHelper().getBestLocation());
         }
         answerResponse.setQuizId(2);
 

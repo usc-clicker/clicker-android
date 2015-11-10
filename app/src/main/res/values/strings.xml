@@ -18,8 +18,8 @@
     <string name="bad_login">Invalid username or password.</string>
     <string name="login_error">An error occurred while logging in. Please try again.</string>
 
-    <string name="permissions_request_title">Clicker needs access to your location</string>
-    <string name="permissions_request_message">In order to verify that you\'re attending this class, Clicker needs access to your location. Once you dismiss this dialog, Clicker will ask for the necessary permissions. Make sure to allow access to ensure that your answers are properly recorded.</string>
+    <string name="permissions_request_title">Clicker needs your location</string>
+    <string name="permissions_request_message">Clicker needs access to your location in order to verify presence in class. Make sure to allow access to ensure that your answers are properly recorded.</string>
     <string name="permissions_request_ok">OK</string>
 
     <string name="status_no_location">Getting location…</string>
