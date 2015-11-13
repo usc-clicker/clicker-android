@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
+import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.view.MultipleChoiceList;
 import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.R;
@@ -41,10 +42,14 @@ public class MultipleChoiceActivity extends ResponseActivity implements Timer.Ti
     }
 
     public static void start(Context context, MultipleChoiceQuestion question) {
+        context.startActivity(getIntent(context, question));
+    }
+
+    public static Intent getIntent(Context context, MultipleChoiceQuestion question) {
         Intent intent = new Intent(context, MultipleChoiceActivity.class);
         intent.putExtra("question", question);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        return intent;
     }
 
     @Override
@@ -65,6 +70,14 @@ public class MultipleChoiceActivity extends ResponseActivity implements Timer.Ti
         if (question != null) {
             setQuestion(question);
         }
+
+        ClickerApplication.getLocationHelper().setTrackLocation(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ClickerApplication.getLocationHelper().setTrackLocation(false);
     }
 
     private void setQuestion(MultipleChoiceQuestion question) {

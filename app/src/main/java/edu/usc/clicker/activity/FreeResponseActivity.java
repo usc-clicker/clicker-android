@@ -44,10 +44,14 @@ public class FreeResponseActivity extends ResponseActivity implements Timer.Time
     }
 
     public static void start(Context context, FreeResponseQuestion question) {
+        context.startActivity(getIntent(context, question));
+    }
+
+    public static Intent getIntent(Context context, FreeResponseQuestion question) {
         Intent intent = new Intent(context, FreeResponseActivity.class);
         intent.putExtra("question", question);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        return intent;
     }
 
     @Override

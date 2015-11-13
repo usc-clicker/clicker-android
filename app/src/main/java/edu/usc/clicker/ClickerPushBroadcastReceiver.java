@@ -1,12 +1,15 @@
 package edu.usc.clicker;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
-import com.parse.ParseAnalytics;
 import com.parse.ParsePushBroadcastReceiver;
 
 import org.json.JSONException;
@@ -20,6 +23,8 @@ import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.model.NumericResponseQuestion;
 
 public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
+    private final int QUIZ_NOTIFICATION = 1000;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -51,6 +56,38 @@ public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
                 } else if (type.equals("numeric")) {
                     NumericResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), NumericResponseQuestion.class);
                     NumericResponseActivity.start(context, question);
+                }
+            } else {
+                Intent startIntent = null;
+                if (type.equals("multiple-choice")) {
+                    MultipleChoiceQuestion question = ClickerApplication.GSON.fromJson(json.toString(), MultipleChoiceQuestion.class);
+                    startIntent = MultipleChoiceActivity.getIntent(context, question);
+                } else if (type.equals("free-response")) {
+                    FreeResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), FreeResponseQuestion.class);
+                    startIntent = FreeResponseActivity.getIntent(context, question);
+                } else if (type.equals("numeric")) {
+                    NumericResponseQuestion question = ClickerApplication.GSON.fromJson(json.toString(), NumericResponseQuestion.class);
+                    startIntent = NumericResponseActivity.getIntent(context, question);
+                }
+
+                if (startIntent != null) {
+                    PendingIntent startPendingIntent = PendingIntent.getActivity(context, 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                    Notification notification = new NotificationCompat.Builder(context.getApplicationContext())
+                            .setSmallIcon(R.mipmap.ic_notification_white)
+                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
+                            .setContentIntent(startPendingIntent)
+                            .setContentTitle(context.getString(R.string.quiz_notification_title))
+                            .setContentText(context.getString(R.string.quiz_notification_message))
+                            .setPriority(Notification.PRIORITY_HIGH)
+                            .setOngoing(false)
+                            .build();
+
+                    notification.flags = Notification.FLAG_AUTO_CANCEL;
+                    notification.defaults |= Notification.DEFAULT_ALL;
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context.getApplicationContext());
+                    notificationManager.notify(QUIZ_NOTIFICATION, notification);
                 }
             }
         } catch (JSONException je) {

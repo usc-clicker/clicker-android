@@ -23,17 +23,19 @@ import android.widget.LinearLayout;
 import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
+import java.util.List;
 
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.EnrollBody;
+import edu.usc.clicker.model.Section;
 import edu.usc.clicker.view.MyClassesAdapter;
 import edu.usc.clicker.view.MyClassesListView;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MyClassesActivity extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody> {
+public class MyClassesActivity extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody>{
 
     private FloatingActionButton addFAB;
     private MyClassesListView listView;
@@ -83,7 +85,8 @@ public class MyClassesActivity extends AppCompatActivity implements View.OnClick
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     ClickerApplication.CLICKER_API.enroll(
-                                                            new EnrollBody(ClickerApplication.LOGIN_HELPER.getEmail(MyClassesActivity.this), Integer.parseInt(editText.getText().toString()))).enqueue(MyClassesActivity.this);
+                                                            new EnrollBody(ClickerApplication.LOGIN_HELPER.getEmail(MyClassesActivity.this), Integer.parseInt(editText.getText().toString())))
+                                                            .enqueue(MyClassesActivity.this);
                                                 }
                                             })
                                             .setNegativeButton(R.string.addClassDialogNegative, new DialogInterface.OnClickListener() {
@@ -101,6 +104,7 @@ public class MyClassesActivity extends AppCompatActivity implements View.OnClick
         try {
             if (response.body().string().contains("ok")) {
                 listView.refresh();
+                refreshSections();
             } else {
                 Snackbar.make(findViewById(android.R.id.content), R.string.addClassFailure, Snackbar.LENGTH_LONG).show();
             }
@@ -133,6 +137,23 @@ public class MyClassesActivity extends AppCompatActivity implements View.OnClick
             onBackPressed();
         }
         return true;
+    }
+
+    private void refreshSections() {
+        ClickerApplication.CLICKER_API
+                .getUserSections(ClickerApplication.LOGIN_HELPER.getEmail(this))
+                .enqueue(new Callback<List<Section>>() {
+                    @Override
+                    public void onResponse(Response<List<Section>> response, Retrofit retrofit) {
+                        ClickerApplication.SECTION_HELPER.removeAllSections();
+                        ClickerApplication.SECTION_HELPER.addSections(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
     }
 
 }

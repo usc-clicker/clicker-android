@@ -10,6 +10,7 @@ public class LocationHelper implements LocationListener {
     private final int FIVE_SECONDS = 5000;
     private Location bestLocation;
     private boolean hasLocation = false;
+    private boolean trackLocation = false;
     private LocationHelperListener listener;
 
     @Override
@@ -55,14 +56,30 @@ public class LocationHelper implements LocationListener {
         listener.locationStatusChanged(hasLocation);
     }
 
-    public LocationHelper(LocationManager manager) {
-        this.manager = manager;
+    public boolean getTrackLocation() {
+        return trackLocation;
+    }
+
+    public void setTrackLocation(boolean trackLocation) {
+        if (trackLocation == this.trackLocation) { //if trackLocation doesn't change, don't do anything
+            return;
+        }
 
         try {
-            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
+            if (trackLocation) {
+                this.trackLocation = true;
+                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
+            } else {
+                this.trackLocation = false;
+                manager.removeUpdates(this);
+            }
         } catch (SecurityException se) {
             se.printStackTrace();
         }
+    }
+
+    public LocationHelper(LocationManager manager) {
+        this.manager = manager;
     }
 
     public interface LocationHelperListener {

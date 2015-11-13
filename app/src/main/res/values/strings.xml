@@ -3,8 +3,8 @@
     <string name="my_classes_title">My Classes</string>
     <string name="statistics_title">Statistics</string>
 
-    <string name="app_running">Clicker is connected!</string>
-    <string name="disconnect">Disconnect</string>
+    <string name="app_running">Clicker will auto-launch when you\'re quizzed.</string>
+    <string name="disconnect">Disable auto-launch</string>
 
     <string name="email">USC email</string>
     <string name="password">Password</string>
@@ -13,8 +13,8 @@
     <string name="welcome_description">To use Clicker, you need a Clicker account. You can either create an account or login with an existing one.</string>
     <string name="welcome_new_account">CREATE AN ACCOUNT</string>
     <string name="welcome_login">LOGIN</string>
-    <string name="login_title">Login with your USC account</string>
-    <string name="login_description">Clicker needs to connect using your USC credentials to get your courses and quizzes.</string>
+    <string name="login_title">Login with your Clicker account</string>
+    <string name="login_description">Clicker needs you to login to get your courses and quizzes.</string>
     <string name="bad_login">Invalid username or password.</string>
     <string name="login_error">An error occurred while logging in. Please try again.</string>
 
@@ -65,4 +65,7 @@
 
     <string name="foss_menu_item">Open Source Licenses</string>
     <string name="logout_menu_item">Logout</string>
+    <string name="quiz_notification_message">Tap to answer quiz!</string>
+    <string name="quiz_notification_title">Your instructor has started a quiz</string>
+    <string name="drop_section">Remove class</string>
 </resources>

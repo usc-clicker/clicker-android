@@ -28,9 +28,15 @@ import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
 
+import java.util.List;
+
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.MultipleChoiceQuestion;
+import edu.usc.clicker.model.Section;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         currentClassCard.animate().alpha(1.0f).translationY(0.0f).setInterpolator(new DecelerateInterpolator()).setDuration(1000).start();
+
+        getSections();
     }
 
     @Override
@@ -137,7 +145,29 @@ public class MainActivity extends AppCompatActivity {
 
         if (!ClickerApplication.getShouldAutoLaunch()) {
             ClickerApplication.setShouldAutoLaunch(this, true);
+            ClickerApplication.getLocationHelper().setTrackLocation(true);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ClickerApplication.getLocationHelper().setTrackLocation(false);
+    }
+
+    private void getSections() {
+        ClickerApplication.CLICKER_API.getUserSections(ClickerApplication.LOGIN_HELPER.getEmail(this)).enqueue(new Callback<List<Section>>() {
+            @Override
+            public void onResponse(Response<List<Section>> response, Retrofit retrofit) {
+                ClickerApplication.SECTION_HELPER.addSections(response.body());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 
     private void requestLocationPermissions() {
@@ -161,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             ClickerApplication.initLocationHelper(this);
+            ClickerApplication.getLocationHelper().setTrackLocation(true);
             ClickerApplication.connect(this);
         }
     }

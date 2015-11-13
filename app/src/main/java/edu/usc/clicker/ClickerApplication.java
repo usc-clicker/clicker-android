@@ -14,19 +14,23 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.PushService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.Arrays;
+import java.util.List;
 
 import edu.usc.clicker.activity.MainActivity;
 import edu.usc.clicker.api.ClickerAPI;
+import edu.usc.clicker.model.Section;
 import edu.usc.clicker.util.LocationHelper;
 import edu.usc.clicker.util.LoginHelper;
+import edu.usc.clicker.util.SectionHelper;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
-public class ClickerApplication extends Application {
+public class ClickerApplication extends Application implements SectionHelper.SectionHelperListener {
 
     public static Gson GSON = new Gson();
     public static final int DISCONNECT_REQUEST_CODE = -1;
@@ -35,6 +39,7 @@ public class ClickerApplication extends Application {
     public static Intent disconnectIntent;
     public static boolean shouldAutoLaunch = true;
     public static LocationHelper LOCATION_HELPER;
+    public static SectionHelper SECTION_HELPER;
 
     public static OkHttpClient OK_CLIENT = createOkHttpClient();
 
@@ -78,8 +83,8 @@ public class ClickerApplication extends Application {
     public static void connect(Context context) {
         try {
             Parse.initialize(context.getApplicationContext(), "4dWxGYc9wzZRtcxzL3wXne6gmJiLfKut5AA4H4xL", "e8t0sCOUyo8FFD7RuDUq6GIS4ccJ51GxQX17P15p");
-            ParseInstallation.getCurrentInstallation().addAllUnique("channels", Arrays.asList("Students"));
             ParseInstallation.getCurrentInstallation().saveInBackground();
+            initSectionHelper(((ClickerApplication) context.getApplicationContext()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,5 +131,24 @@ public class ClickerApplication extends Application {
 
     public static boolean getShouldAutoLaunch() {
         return ClickerApplication.shouldAutoLaunch;
+    }
+
+    private static void initSectionHelper(ClickerApplication application) {
+        SECTION_HELPER = new SectionHelper();
+        SECTION_HELPER.setListener(application);
+    }
+
+    @Override
+    public void onCoursesChanged() {
+        ParseInstallation.getCurrentInstallation().remove("channels");
+
+        List<String> sections = SECTION_HELPER.getSectionChannels();
+        sections.add("Students");
+
+        ParseInstallation.getCurrentInstallation().addAllUnique("channels", sections);
+
+        for (Section s : SECTION_HELPER.getSections()) {
+            Log.d("ClickerApplication", "Section added: " + s.getId());
+        }
     }
 }

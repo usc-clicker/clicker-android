@@ -45,10 +45,14 @@ public class NumericResponseActivity extends FreeResponseActivity implements Tim
     }
 
     public static void start(Context context, NumericResponseQuestion question) {
+        context.startActivity(getIntent(context, question));
+    }
+
+    public static Intent getIntent(Context context, NumericResponseQuestion question) {
         Intent intent = new Intent(context, NumericResponseActivity.class);
         intent.putExtra("question", question);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        return intent;
     }
 
     @Override

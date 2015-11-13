@@ -104,5 +104,4 @@ public class Section {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }
