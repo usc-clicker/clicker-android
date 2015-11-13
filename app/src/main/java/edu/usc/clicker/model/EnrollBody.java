@@ -10,9 +10,9 @@ public class EnrollBody {
 
     @SerializedName("section_id")
     @Expose
-    private int sectionID;
+    private long sectionID;
 
-    public EnrollBody(String user, int sectionID) {
+    public EnrollBody(String user, long sectionID) {
         this.user = user;
         this.sectionID = sectionID;
     }

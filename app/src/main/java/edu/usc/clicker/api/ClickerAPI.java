@@ -28,11 +28,14 @@ public interface ClickerAPI {
     @GET("/user/")
     Call<User> getUser(@Query("id") int userID);
 
-    @GET("/user/classes")
+    @GET("/user/classes/")
     Call<List<Section>> getUserSections(@Query("user") String email);
 
-    @POST("/user/enroll")
-    Call<ResponseBody> enroll(@Body EnrollBody enrollBody);
+    @POST("/user/enroll/")
+    Call<Section> enroll(@Body EnrollBody enrollBody);
+
+    @POST("/user/unenroll/")
+    Call<Section> unenroll(@Body EnrollBody enrollBody);
 
     @GET("/class/")
     Call<Course> getCourse(@Query("id") int courseID);

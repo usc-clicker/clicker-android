@@ -39,7 +39,7 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     public static Intent disconnectIntent;
     public static boolean shouldAutoLaunch = true;
     public static LocationHelper LOCATION_HELPER;
-    public static SectionHelper SECTION_HELPER;
+    public static SectionHelper SECTION_HELPER = new SectionHelper();
 
     public static OkHttpClient OK_CLIENT = createOkHttpClient();
 
@@ -134,7 +134,6 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     }
 
     private static void initSectionHelper(ClickerApplication application) {
-        SECTION_HELPER = new SectionHelper();
         SECTION_HELPER.setListener(application);
     }
 

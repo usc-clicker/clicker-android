@@ -17,14 +17,11 @@ public class LocationHelper implements LocationListener {
     public void onLocationChanged(Location location) {
         hasLocation = true;
         if (isBetterLocation(location, bestLocation)) {
-            if (bestLocation == null) {
-                bestLocation = location;
-                if (listener != null) {
-                    listener.locationStatusChanged(true);
-                }
-            } else {
-                bestLocation = location;
-            }
+            bestLocation = location;
+        }
+
+        if (listener != null) {
+            listener.locationStatusChanged(true);
         }
     }
 
@@ -53,7 +50,9 @@ public class LocationHelper implements LocationListener {
 
     public void setLocationHelperListener(LocationHelperListener listener) {
         this.listener = listener;
-        listener.locationStatusChanged(hasLocation);
+        if (this.listener != null) {
+            listener.locationStatusChanged(hasLocation);
+        }
     }
 
     public boolean getTrackLocation() {

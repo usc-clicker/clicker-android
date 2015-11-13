@@ -14,11 +14,14 @@ import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ActionMenuView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.squareup.okhttp.ResponseBody;
 
@@ -35,7 +38,7 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MyClassesActivity extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody>{
+public class MyClassesActivity extends AppCompatActivity implements View.OnClickListener, Callback<Section>{
 
     private FloatingActionButton addFAB;
     private MyClassesListView listView;
@@ -52,12 +55,12 @@ public class MyClassesActivity extends AppCompatActivity implements View.OnClick
 
         setContentView(R.layout.activity_my_classes);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         listView = (MyClassesListView) findViewById(R.id.listView);
 
         addFAB = (FloatingActionButton) findViewById(R.id.fab);
         addFAB.setOnClickListener(this);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
@@ -100,21 +103,14 @@ public class MyClassesActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
-        try {
-            if (response.body().string().contains("ok")) {
-                listView.refresh();
-                refreshSections();
-            } else {
-                Snackbar.make(findViewById(android.R.id.content), R.string.addClassFailure, Snackbar.LENGTH_LONG).show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void onResponse(Response<Section> response, Retrofit retrofit) {
+        listView.refresh();
+        refreshSections();
     }
 
     @Override
     public void onFailure(Throwable t) {
+        t.printStackTrace();
         Snackbar.make(findViewById(android.R.id.content), R.string.addClassNetworkFailure, Snackbar.LENGTH_LONG).show();
     }
 

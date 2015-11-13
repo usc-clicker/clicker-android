@@ -12,6 +12,9 @@ import android.widget.ListView;
 
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
+import edu.usc.clicker.activity.MyClassesActivity;
+import edu.usc.clicker.model.EnrollBody;
+import edu.usc.clicker.model.Section;
 
 public class MyClassesListView extends ListView implements AdapterView.OnItemLongClickListener {
     public void refresh() {
@@ -27,11 +30,13 @@ public class MyClassesListView extends ListView implements AdapterView.OnItemLon
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setItems(new CharSequence[]{getResources().getString(R.string.drop_section)}, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Section section = ((MyClassesAdapter) getAdapter()).getItem(position);
+                        ClickerApplication.CLICKER_API.unenroll(new EnrollBody(ClickerApplication.getLoginHelper().getEmail(getContext()), Long.parseLong(section.getSectionID()))).enqueue((MyClassesActivity) getContext());
                         dialog.dismiss();
                     }
                 })

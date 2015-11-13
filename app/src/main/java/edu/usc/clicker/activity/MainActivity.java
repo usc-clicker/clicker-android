@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
         ClickerApplication.CLICKER_API.getUserSections(ClickerApplication.LOGIN_HELPER.getEmail(this)).enqueue(new Callback<List<Section>>() {
             @Override
             public void onResponse(Response<List<Section>> response, Retrofit retrofit) {
+                if (response.body() == null) {
+                    return;
+                }
+
                 ClickerApplication.SECTION_HELPER.addSections(response.body());
             }
 
