@@ -1,9 +1,12 @@
 package edu.usc.clicker.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Section {
+public class Section implements Parcelable {
 
     @SerializedName("course_id")
     @Expose
@@ -16,7 +19,7 @@ public class Section {
     private String instructor;
     @SerializedName("location")
     @Expose
-    private Object location;
+    private LocationBody location;
     @SerializedName("start_time")
     @Expose
     private String startTime;
@@ -61,7 +64,7 @@ public class Section {
         return location;
     }
 
-    public void setLocation(Object location) {
+    public void setLocation(LocationBody location) {
         this.location = location;
     }
 
@@ -104,4 +107,47 @@ public class Section {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.courseID);
+        dest.writeString(this.sectionID);
+        dest.writeString(this.instructor);
+        dest.writeParcelable(this.location, flags);
+        dest.writeString(this.startTime);
+        dest.writeString(this.endTime);
+        dest.writeLong(this.id);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.updatedAt);
+    }
+
+    public Section() {
+    }
+
+    protected Section(Parcel in) {
+        this.courseID = in.readString();
+        this.sectionID = in.readString();
+        this.instructor = in.readString();
+        this.location = in.readParcelable(Object.class.getClassLoader());
+        this.startTime = in.readString();
+        this.endTime = in.readString();
+        this.id = in.readLong();
+        this.createdAt = in.readString();
+        this.updatedAt = in.readString();
+    }
+
+    public static final Parcelable.Creator<Section> CREATOR = new Parcelable.Creator<Section>() {
+        public Section createFromParcel(Parcel source) {
+            return new Section(source);
+        }
+
+        public Section[] newArray(int size) {
+            return new Section[size];
+        }
+    };
 }

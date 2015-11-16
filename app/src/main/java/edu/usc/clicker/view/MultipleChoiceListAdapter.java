@@ -11,7 +11,6 @@ import com.squareup.okhttp.ResponseBody;
 
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
-import edu.usc.clicker.activity.ResponseActivity;
 import edu.usc.clicker.model.AnswerResponse;
 import edu.usc.clicker.model.MultipleChoiceQuestion;
 import retrofit.Callback;
@@ -76,7 +75,7 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
         answerResponse.setQuestionId(question.getID());
         answerResponse.setUser(ClickerApplication.LOGIN_HELPER.getEmail(context));
         if (ClickerApplication.getLocationHelper() != null && ClickerApplication.getLocationHelper().hasLocation()) {
-            answerResponse.setLocationResponse(ClickerApplication.getLocationHelper().getBestLocation());
+            answerResponse.setLocationBody(ClickerApplication.getLocationHelper().getBestLocation());
         }
         answerResponse.setQuizId(2);
 

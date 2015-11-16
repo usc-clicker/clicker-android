@@ -53,5 +53,5 @@ public interface ClickerAPI {
     Call<ResponseBody> answer(@Body AnswerResponse answer);
 
     @GET("/user/stats/")
-    Call<List<QuizStatistics>> getStats(@Query("user") String username);
+    Call<List<QuizStatistics>> getStats(@Query("user") String username, @Query("section_id") int sectionID);
 }

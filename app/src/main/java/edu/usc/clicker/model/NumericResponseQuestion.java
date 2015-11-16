@@ -17,9 +17,9 @@ public class NumericResponseQuestion implements Parcelable {
     @SerializedName("question")
     @Expose
     private String question;
-    @SerializedName("start_time")
+    @SerializedName("expiration")
     @Expose
-    private long startTime;
+    private long expiration;
     @SerializedName("time_limit")
     @Expose
     private long timeLimit;
@@ -39,8 +39,8 @@ public class NumericResponseQuestion implements Parcelable {
         return question;
     }
 
-    public long getStartTime() {
-        return startTime;
+    public long getExpiration() {
+        return expiration;
     }
 
     public long getTimeLimit() {
@@ -62,7 +62,7 @@ public class NumericResponseQuestion implements Parcelable {
         dest.writeLong(this.answer);
         dest.writeString(this.pushHash);
         dest.writeString(this.question);
-        dest.writeLong(this.startTime);
+        dest.writeLong(this.expiration);
         dest.writeLong(this.timeLimit);
         dest.writeString(this.type);
     }
@@ -74,7 +74,7 @@ public class NumericResponseQuestion implements Parcelable {
         this.answer = in.readLong();
         this.pushHash = in.readString();
         this.question = in.readString();
-        this.startTime = in.readLong();
+        this.expiration = in.readLong();
         this.timeLimit = in.readLong();
         this.type = in.readString();
     }

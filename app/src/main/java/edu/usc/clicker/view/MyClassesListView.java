@@ -13,10 +13,11 @@ import android.widget.ListView;
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.activity.MyClassesActivity;
+import edu.usc.clicker.activity.StatisticsActivity;
 import edu.usc.clicker.model.EnrollBody;
 import edu.usc.clicker.model.Section;
 
-public class MyClassesListView extends ListView implements AdapterView.OnItemLongClickListener {
+public class MyClassesListView extends ListView implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     public void refresh() {
         ((MyClassesAdapter) getAdapter()).refresh();
     }
@@ -26,7 +27,13 @@ public class MyClassesListView extends ListView implements AdapterView.OnItemLon
 
         setAdapter(new MyClassesAdapter(context));
 
+        setOnItemClickListener(this);
         setOnItemLongClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        StatisticsActivity.start(getContext(), ((MyClassesAdapter) getAdapter()).getItem(position));
     }
 
     @Override
@@ -45,11 +52,10 @@ public class MyClassesListView extends ListView implements AdapterView.OnItemLon
         return true;
     }
 
+
     @Override
     protected void onCreateContextMenu(ContextMenu menu) {
         super.onCreateContextMenu(menu);
         menu.add(0, 0, 0, R.string.drop_section);
     }
-
-
 }

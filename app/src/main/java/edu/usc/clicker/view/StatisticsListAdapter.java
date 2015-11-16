@@ -58,9 +58,9 @@ public class StatisticsListAdapter extends BaseAdapter implements Callback<List<
 
     }
 
-    public StatisticsListAdapter(Context context) {
+    public StatisticsListAdapter(Context context, int sectionID) {
         this.context = context;
 
-        ClickerApplication.CLICKER_API.getStats(ClickerApplication.LOGIN_HELPER.getEmail(context)).enqueue(this);
+        ClickerApplication.CLICKER_API.getStats(ClickerApplication.LOGIN_HELPER.getEmail(context), sectionID).enqueue(this);
     }
 }

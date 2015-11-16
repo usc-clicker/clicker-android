@@ -2,13 +2,8 @@ package edu.usc.clicker.model;
 
 import android.location.Location;
 
-import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-
-import java.io.IOException;
 
 public class AnswerResponse {
 
@@ -23,7 +18,7 @@ public class AnswerResponse {
     private String answer;
     @SerializedName("location")
     @Expose
-    private LocationResponse locationResponse = new LocationResponse();
+    private LocationBody locationBody = new LocationBody();
     @SerializedName("user")
     @Expose
     private String user;
@@ -52,15 +47,15 @@ public class AnswerResponse {
         this.answer = answer;
     }
 
-    public LocationResponse getLocationResponse() {
-        return locationResponse;
+    public LocationBody getLocationBody() {
+        return locationBody;
     }
 
-    public void setLocationResponse(Location location) {
-        LocationResponse locationResponse = new LocationResponse();
-        locationResponse.setLat(location.getLatitude());
-        locationResponse.setLng(location.getLongitude());
-        this.locationResponse = locationResponse;
+    public void setLocationBody(Location location) {
+        LocationBody locationBody = new LocationBody();
+        locationBody.setLat(location.getLatitude());
+        locationBody.setLng(location.getLongitude());
+        this.locationBody = locationBody;
     }
 
     public String getUser() {

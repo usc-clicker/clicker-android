@@ -7,7 +7,9 @@ import android.widget.ListView;
 public class StatisticsListView extends ListView {
     public StatisticsListView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
 
-        setAdapter(new StatisticsListAdapter(context));
+    public void setSection(int sectionID) {
+        setAdapter(new StatisticsListAdapter(getContext(), sectionID));
     }
 }

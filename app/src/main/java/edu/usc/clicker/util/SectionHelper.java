@@ -60,7 +60,7 @@ public class SectionHelper {
         List<String> channels = new ArrayList<>();
 
         for (Section s : sections) {
-            channels.add(Long.toString(s.getId()));
+            channels.add("s" + s.getSectionID());
         }
 
         return channels;

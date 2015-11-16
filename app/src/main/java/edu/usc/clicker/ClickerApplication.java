@@ -14,6 +14,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParsePush;
 import com.parse.PushService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
@@ -139,15 +140,18 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
 
     @Override
     public void onCoursesChanged() {
-        ParseInstallation.getCurrentInstallation().remove("channels");
+        List<String> newSections = SECTION_HELPER.getSectionChannels();
 
-        List<String> sections = SECTION_HELPER.getSectionChannels();
-        sections.add("Students");
+        List<String> oldSections = ParseInstallation.getCurrentInstallation().getList("channels");
 
-        ParseInstallation.getCurrentInstallation().addAllUnique("channels", sections);
+        for (String s : oldSections) {
+            Log.d("Clicker", "Unsubscribing from " + s);
+            ParsePush.unsubscribeInBackground(s);
+        }
 
-        for (Section s : SECTION_HELPER.getSections()) {
-            Log.d("ClickerApplication", "Section added: " + s.getId());
+        for (String s : newSections) {
+            Log.d("Clicker", "Subscribing to " + s);
+            ParsePush.subscribeInBackground(s);
         }
     }
 }
