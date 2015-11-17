@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                ClickerApplication.SECTION_HELPER.removeAllSections();
                 ClickerApplication.SECTION_HELPER.addSections(response.body());
             }
 

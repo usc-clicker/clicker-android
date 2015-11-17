@@ -43,6 +43,7 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     public static boolean shouldAutoLaunch = true;
     public static LocationHelper LOCATION_HELPER;
     public static SectionHelper SECTION_HELPER = new SectionHelper();
+    private static boolean parseInitialized = false;
 
     public static OkHttpClient OK_CLIENT = createOkHttpClient();
 
@@ -85,15 +86,20 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     }
 
     public static void connect(Context context) {
+        setShouldAutoLaunch(context, true);
+
+        if (parseInitialized) {
+            return;
+        }
+
         try {
+            parseInitialized = true;
             Parse.initialize(context.getApplicationContext(), "4dWxGYc9wzZRtcxzL3wXne6gmJiLfKut5AA4H4xL", "e8t0sCOUyo8FFD7RuDUq6GIS4ccJ51GxQX17P15p");
             ParseInstallation.getCurrentInstallation().saveInBackground();
             initSectionHelper(((ClickerApplication) context.getApplicationContext()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        setShouldAutoLaunch(context, true);
     }
 
     public static void initLocationHelper(Context context) {
