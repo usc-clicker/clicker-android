@@ -16,6 +16,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
+        android:minHeight="@dimen/toolbar_height"
         android:layout_gravity="top"
         app:title="@string/my_classes_title"
         android:title="@string/my_classes_title"

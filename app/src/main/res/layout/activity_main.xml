@@ -1,6 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".MainActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
     android:background="?attr/colorPrimary">
 
     <LinearLayout
@@ -11,8 +14,7 @@
         android:orientation="vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/currentClassCard">
+        android:layout_below="@+id/toolbar">
 
         <ImageView android:id="@+id/symbol"
             android:layout_width="96dp"
@@ -43,7 +45,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
+        android:minHeight="@dimen/toolbar_height"
         android:layout_gravity="top"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:title="@string/app_name"
+        app:title="@string/app_name" />
 
 </RelativeLayout>

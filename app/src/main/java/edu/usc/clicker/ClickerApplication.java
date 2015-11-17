@@ -11,6 +11,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
@@ -19,6 +20,7 @@ import com.parse.PushService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
 
@@ -75,6 +77,7 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
     }
 
     public static void disconnect() {
