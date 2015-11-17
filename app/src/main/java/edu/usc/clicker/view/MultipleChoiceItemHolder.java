@@ -1,27 +1,35 @@
 package edu.usc.clicker.view;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.usc.clicker.R;
 
 public class MultipleChoiceItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    View view;
+    LinearLayout view;
     TextView letter;
     TextView answer;
     MultipleChoiceListAdapter adapter;
     int num;
 
-    public void bindAnswer(String answer, int num) {
-        this.answer.setText(answer);
+    public void bindAnswer(String answer, int num, boolean showAnswer) {
+        if (showAnswer) {
+            this.answer.setText(answer);
+            this.view.setGravity(Gravity.START);
+        } else {
+            this.answer.setText("");
+            this.view.setGravity(Gravity.CENTER);
+        }
         this.num = num;
         letter.setText(Character.toString((char) (num + 'A')));
     }
     
     public MultipleChoiceItemHolder(View itemView, MultipleChoiceListAdapter adapter) {
         super(itemView);
-        this.view = itemView;
+        this.view = (LinearLayout) itemView;
         this.adapter = adapter;
         letter = (TextView) itemView.findViewById(R.id.letter);
         answer = (TextView) itemView.findViewById(R.id.answer);

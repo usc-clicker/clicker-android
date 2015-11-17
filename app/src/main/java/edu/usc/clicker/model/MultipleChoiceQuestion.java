@@ -34,6 +34,12 @@ public class MultipleChoiceQuestion implements Parcelable {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("show_answers")
+    @Expose
+    private boolean showAnswers;
+    @SerializedName("quiz_id")
+    @Expose
+    public int quizID;
 
     public int getID() {
         return id;
@@ -71,6 +77,14 @@ public class MultipleChoiceQuestion implements Parcelable {
         return type;
     }
 
+    public boolean getShowAnsers() {
+        return showAnswers;
+    }
+
+    public int getQuizID() {
+        return quizID;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -86,6 +100,8 @@ public class MultipleChoiceQuestion implements Parcelable {
         dest.writeLong(this.expiration);
         dest.writeLong(this.timeLimit);
         dest.writeString(this.type);
+        dest.writeByte((byte) (this.showAnswers ? 1 : 0));
+        dest.writeInt(this.quizID);
     }
 
     public MultipleChoiceQuestion() {
@@ -100,6 +116,8 @@ public class MultipleChoiceQuestion implements Parcelable {
         this.expiration = in.readLong();
         this.timeLimit = in.readLong();
         this.type = in.readString();
+        this.showAnswers = in.readByte() != 0;
+        this.quizID = in.readInt();
     }
 
     public static final Parcelable.Creator<MultipleChoiceQuestion> CREATOR = new Parcelable.Creator<MultipleChoiceQuestion>() {

@@ -21,9 +21,11 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
     private Context context;
     private MultipleChoiceQuestion question;
     private int selected = -1;
+    private boolean showAnswers = true;
 
     public void setQuestion(MultipleChoiceQuestion question) {
         this.question = question;
+        this.showAnswers = this.question.getShowAnsers();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
 
     @Override
     public void onBindViewHolder(MultipleChoiceItemHolder multipleChoiceItemHolder, int i) {
-        multipleChoiceItemHolder.bindAnswer(question.getChoices().get(i), i);
+        multipleChoiceItemHolder.bindAnswer(question.getChoices().get(i), i, showAnswers);
         multipleChoiceItemHolder.setSelected(selected == i);
     }
 
@@ -77,7 +79,7 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
         if (ClickerApplication.getLocationHelper() != null && ClickerApplication.getLocationHelper().hasLocation()) {
             answerResponse.setLocationBody(ClickerApplication.getLocationHelper().getBestLocation());
         }
-        answerResponse.setQuizId(2);
+        answerResponse.setQuizId(question.getQuizID());
 
         ClickerApplication.CLICKER_API.answer(answerResponse).enqueue(this);
     }
