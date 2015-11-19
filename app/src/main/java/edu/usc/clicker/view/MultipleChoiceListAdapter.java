@@ -13,6 +13,7 @@ import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.AnswerResponse;
 import edu.usc.clicker.model.MultipleChoiceQuestion;
+import edu.usc.clicker.util.ClickerLog;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -63,7 +64,7 @@ public class MultipleChoiceListAdapter extends RecyclerView.Adapter<MultipleChoi
 
     @Override
     public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
-        Log.d("MCLA", response.message());
+        ClickerLog.d("MCLA", response.message());
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.parse.PushService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import edu.usc.clicker.util.ClickerLog;
 import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
@@ -66,7 +67,7 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String s) {
-                Log.d("ClickerApplication", s);
+                ClickerLog.d("ClickerApplication", s);
             }
         });
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -79,27 +80,18 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+
+        Parse.initialize(getApplicationContext(), "4dWxGYc9wzZRtcxzL3wXne6gmJiLfKut5AA4H4xL", "e8t0sCOUyo8FFD7RuDUq6GIS4ccJ51GxQX17P15p");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        initSectionHelper(this);
     }
 
-    public static void disconnect() {
+    public static void disableAutoLaunch() {
         setShouldAutoLaunch(null, false);
     }
 
-    public static void connect(Context context) {
+    public static void enableAutoLaunch(Context context) {
         setShouldAutoLaunch(context, true);
-
-        if (parseInitialized) {
-            return;
-        }
-
-        try {
-            parseInitialized = true;
-            Parse.initialize(context.getApplicationContext(), "4dWxGYc9wzZRtcxzL3wXne6gmJiLfKut5AA4H4xL", "e8t0sCOUyo8FFD7RuDUq6GIS4ccJ51GxQX17P15p");
-            ParseInstallation.getCurrentInstallation().saveInBackground();
-            initSectionHelper(((ClickerApplication) context.getApplicationContext()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static void initLocationHelper(Context context) {
@@ -153,13 +145,15 @@ public class ClickerApplication extends Application implements SectionHelper.Sec
 
         List<String> oldSections = ParseInstallation.getCurrentInstallation().getList("channels");
 
-        for (String s : oldSections) {
-            Log.d("Clicker", "Unsubscribing from " + s);
-            ParsePush.unsubscribeInBackground(s);
+        if (oldSections != null) {
+            for (String s : oldSections) {
+                ClickerLog.d("Unsubscribing from " + s);
+                ParsePush.unsubscribeInBackground(s);
+            }
         }
 
         for (String s : newSections) {
-            Log.d("Clicker", "Subscribing to " + s);
+            ClickerLog.d("Subscribing to " + s);
             ParsePush.subscribeInBackground(s);
         }
     }

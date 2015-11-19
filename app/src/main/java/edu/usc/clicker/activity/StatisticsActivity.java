@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.Section;
+import edu.usc.clicker.util.ClickerLog;
 import edu.usc.clicker.view.StatisticsListView;
 
 public class StatisticsActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (!getIntent().hasExtra("section")) {
-            Log.e("StatisticsActivity", "Activity started with invalid bundle!");
+            ClickerLog.e("StatisticsActivity", "Activity started with invalid bundle!");
             finish();
         }
 

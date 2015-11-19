@@ -19,6 +19,7 @@ import com.squareup.okhttp.ResponseBody;
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.LoginBody;
+import edu.usc.clicker.util.ClickerLog;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -51,7 +52,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Cal
         } else if (password.getText().toString().isEmpty()) {
             password.setError("Please enter a password.");
         } else {
-            Log.d("LoginActivity", "Logging in...");
+            ClickerLog.d("LoginActivity", "Logging in...");
             showLoadingLayout();
             loginBody = new LoginBody(email.getText().toString(), password.getText().toString());
             ClickerApplication.CLICKER_API.login(loginBody).enqueue(this);

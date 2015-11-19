@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import edu.usc.clicker.R;
+import edu.usc.clicker.util.ClickerLog;
 
 public class ResponseActivity extends AppCompatActivity implements LocationListener {
     protected LocationManager locationManager;
@@ -69,7 +70,7 @@ public class ResponseActivity extends AppCompatActivity implements LocationListe
     @Override
     public void onLocationChanged(Location location) {
         lastLocation = location;
-        Log.d("ResponseActivity", "current location: " + location.toString());
+        ClickerLog.d("ResponseActivity", "current location: " + location.toString());
     }
 
     @Override

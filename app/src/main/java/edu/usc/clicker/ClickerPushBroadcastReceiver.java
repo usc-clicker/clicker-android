@@ -1,17 +1,14 @@
 package edu.usc.clicker;
 
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.parse.ParsePushBroadcastReceiver;
 
@@ -24,6 +21,7 @@ import edu.usc.clicker.activity.NumericResponseActivity;
 import edu.usc.clicker.model.FreeResponseQuestion;
 import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.model.NumericResponseQuestion;
+import edu.usc.clicker.util.ClickerLog;
 
 public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
     private final int QUIZ_NOTIFICATION = 1000;
@@ -33,13 +31,13 @@ public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
         super.onReceive(context, intent);
 
         if (intent.getAction().equals(ClickerApplication.DISCONNECT_ACTION)) {
-            ClickerApplication.disconnect();
+            ClickerApplication.disableAutoLaunch();
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
             notificationManager.cancel(ClickerApplication.DISCONNECT_ID);
         } else if (intent.getAction().equals("CANCEL")) {
             int id = intent.getIntExtra("notification_id", -1);
             if (id != -1) {
-                Log.d("Clicker", "Dismissing stale quiz notification...");
+                ClickerLog.d("Clicker", "Dismissing stale quiz notification...");
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 manager.cancel(id);
             }
@@ -50,14 +48,18 @@ public class ClickerPushBroadcastReceiver extends ParsePushBroadcastReceiver {
     protected void onPushReceive(Context context, Intent intent) {
         super.onPushReceive(context, intent);
 
+        if (!ClickerApplication.LOGIN_HELPER.isLoggedIn(context)) {
+            return;
+        }
+
         try {
             JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
-            Log.d("Clicker", json.toString());
+            ClickerLog.d(json.toString());
 
             long expiration = json.getLong("expiration");
 
             if (expiration <= System.currentTimeMillis()/1000L) {
-                Log.d("Clicker", "Received stale quiz, ignoring...");
+                ClickerLog.d("Received stale quiz, ignoring...");
                 return;
             }
 

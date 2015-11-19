@@ -32,6 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LoginActivity.start(WelcomeActivity.this);
+                finish();
             }
         });
 
@@ -39,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CreateAccountActivity.start(WelcomeActivity.this);
+                finish();
             }
         });
     }
