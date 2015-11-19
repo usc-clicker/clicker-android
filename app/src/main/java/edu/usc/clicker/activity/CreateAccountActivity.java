@@ -44,6 +44,12 @@ public class CreateAccountActivity extends AppCompatActivity implements Callback
     }
 
     @Override
+    public void onBackPressed() {
+        WelcomeActivity.start(this);
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -90,11 +96,6 @@ public class CreateAccountActivity extends AppCompatActivity implements Callback
         });
     }
 
-    private void createAccount() {
-        showLoadingLayout();
-        ClickerApplication.CLICKER_API.register(new RegisterBody(email.getText().toString(), password.getText().toString(), Long.parseLong(studentID.getText().toString()))).enqueue(this);
-    }
-
     @Override
     public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
         if (response.code() == 200) {
@@ -115,6 +116,11 @@ public class CreateAccountActivity extends AppCompatActivity implements Callback
     @Override
     public void onFailure(Throwable t) {
 
+    }
+
+    private void createAccount() {
+        showLoadingLayout();
+        ClickerApplication.CLICKER_API.register(new RegisterBody(email.getText().toString(), password.getText().toString(), Long.parseLong(studentID.getText().toString()))).enqueue(this);
     }
 
     private void showLoadingLayout() {

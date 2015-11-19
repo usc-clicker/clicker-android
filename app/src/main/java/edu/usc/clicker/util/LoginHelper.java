@@ -3,13 +3,6 @@ package edu.usc.clicker.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.squareup.okhttp.ResponseBody;
-
-import edu.usc.clicker.model.LoginBody;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
-
 public class LoginHelper {
     private static final String EMAIL = "auth_email";
     private static final String PASSWORD = "auth_password";

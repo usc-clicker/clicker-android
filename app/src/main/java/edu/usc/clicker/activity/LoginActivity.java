@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -35,7 +34,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, Cal
 
     @Override
     public void onBackPressed() {
-        System.exit(0);
+        WelcomeActivity.start(this);
+        finish();
     }
 
     public static void start(Context context) {

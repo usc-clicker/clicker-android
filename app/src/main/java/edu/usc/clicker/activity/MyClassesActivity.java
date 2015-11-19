@@ -1,7 +1,5 @@
 package edu.usc.clicker.activity;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,29 +8,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ActionMenuView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.squareup.okhttp.ResponseBody;
-
-import java.io.IOException;
 import java.util.List;
 
 import edu.usc.clicker.ClickerApplication;
 import edu.usc.clicker.R;
 import edu.usc.clicker.model.EnrollBody;
 import edu.usc.clicker.model.Section;
-import edu.usc.clicker.view.MyClassesAdapter;
 import edu.usc.clicker.view.MyClassesListView;
 import retrofit.Callback;
 import retrofit.Response;

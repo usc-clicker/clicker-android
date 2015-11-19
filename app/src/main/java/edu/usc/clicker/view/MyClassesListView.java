@@ -3,7 +3,6 @@ package edu.usc.clicker.view;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.PopupMenu;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.View;

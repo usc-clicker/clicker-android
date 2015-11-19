@@ -9,28 +9,24 @@ import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
-import com.parse.PushService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import edu.usc.clicker.util.ClickerLog;
-import io.fabric.sdk.android.Fabric;
-import java.util.Arrays;
 import java.util.List;
 
 import edu.usc.clicker.activity.MainActivity;
 import edu.usc.clicker.api.ClickerAPI;
-import edu.usc.clicker.model.Section;
+import edu.usc.clicker.util.ClickerLog;
 import edu.usc.clicker.util.LocationHelper;
 import edu.usc.clicker.util.LoginHelper;
 import edu.usc.clicker.util.SectionHelper;
+import io.fabric.sdk.android.Fabric;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 

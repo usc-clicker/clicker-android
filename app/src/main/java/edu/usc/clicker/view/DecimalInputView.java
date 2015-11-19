@@ -1,13 +1,10 @@
 package edu.usc.clicker.view;
 
 import android.content.Context;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

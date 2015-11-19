@@ -10,7 +10,6 @@
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
     android:background="@drawable/multiple_choice_item_background"
-    android:stateListAnimator="@anim/multiple_choice_item_anim"
     android:gravity="start">
 
     <FrameLayout

@@ -6,25 +6,18 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Vibrator;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.os.Vibrator;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 import edu.usc.clicker.ClickerApplication;
-import edu.usc.clicker.view.MultipleChoiceList;
-import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.R;
+import edu.usc.clicker.model.MultipleChoiceQuestion;
 import edu.usc.clicker.util.Timer;
+import edu.usc.clicker.view.MultipleChoiceList;
 import edu.usc.clicker.view.TimerView;
 
 public class MultipleChoiceActivity extends ResponseActivity implements Timer.TimerListener {
