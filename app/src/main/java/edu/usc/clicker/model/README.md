@@ -16,4 +16,44 @@ Returned to the client app as a response body when logging into the application.
 
 ## Course
 
-Returned
+Returned when getting user courses, enrolling, and unenrolling from a class.
+
+## EnrollBody
+
+Used as a request body when enrolling in a class.
+
+## FreeResponseQuestion
+
+Delivered via Parse when a free response question is asked.
+
+## LocationBody
+
+Latitude/longitude pair used in AnswerResponse to provide location when answering a question.
+
+## LoginBody
+
+Used as a request body when logging into Clicker.
+
+## MultipleChoiceQuestion
+
+Delivered via Parse when a multiple choice question is asked.
+
+## NumericResponseQuestion
+
+Delivered via Parse when a numeric response question is asked.
+
+## QuizStatistics
+
+Returned when statistics for a class are requested.
+
+## RegisterBody
+
+Used as a request body when creating a Clicker account.
+
+## Section
+
+Returned when enrolling and unenrolling from a class, and when getting a user's enrolled classes.
+
+## User
+
+Returned when getting a user by id.
